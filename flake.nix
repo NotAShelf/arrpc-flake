@@ -39,7 +39,7 @@
         ''
           mkdir -p $out
           cp -r --no-preserve=mode,ownership ${old}/* $out/
-          chmod +x $out/bin/*
+          chmod +x $out/bin/arRPC/*
           wrapProgram "$out/bin/arRPC/" ''${makeWrapperArgs[@]} ${
             lib.optionalString ((config.flags or []) != [])
             (lib.concatStringsSep " " (map (flag: "--add-flags ${flag}") config.flags))
@@ -48,9 +48,9 @@
     in
       arrpc-wrapped // {override = wrapper system old;};
   in {
-    packages = genSystems (system: prev: {
-      arrpc-wrapped = wrapper system self.packages.${prev.system}.arrpc {};
-      arrpc = prev.callPackage ./packages/arrpc.nix {};
+    packages = genSystems (system: {
+      arrpc-wrapped = wrapper system self.packages.${system}.arrpc {};
+      arrpc = nixpkgs.legacyPackages.${system}.callPackage ./packages/arrpc.nix {};
       default = self.packages.${system}.arrpc-wrapped;
     });
 
