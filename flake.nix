@@ -39,8 +39,8 @@
         ''
           mkdir -p $out
           cp -r --no-preserve=mode,ownership ${old}/* $out/
-          chmod +x $out/bin/arRPC/*
-          wrapProgram "$out/bin/arRPC/" ''${makeWrapperArgs[@]} ${
+          chmod +x "$out/bin/arRPC"
+          makeWrapper "$out/bin/arRPC" ''${makeWrapperArgs[@]} ${
             lib.optionalString ((config.flags or []) != [])
             (lib.concatStringsSep " " (map (flag: "--add-flags ${flag}") config.flags))
           }
