@@ -29,7 +29,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
-    # add the package
-    {home.packages = [cfg.package];}
+    {
+      # add the package
+      home.packages = [cfg.package];
+    }
   ]);
 }
