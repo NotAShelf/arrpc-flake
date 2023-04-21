@@ -1,12 +1,8 @@
 {
-  description = "WebCord Nix Flake";
+  description = "arRPC Nix Flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    dream2nix = {
-      url = "github:nix-community/dream2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -19,18 +15,15 @@
     supportedSystems = [
       "aarch64-linux"
       "x86_64-linux"
-
-      # open an issue if you want these
-      #"aarch64-darwin"
-      #"x86_64-darwin"
+      "aarch64-darwin"
+      "x86_64-darwin"
     ];
     genSystems = lib.genAttrs supportedSystems;
 
     wrapper = system: old: config: let
       pkgs = nixpkgs.legacyPackages.${system};
       arrpc-wrapped =
-        pkgs.runCommand "${old.name}-wrapped"
-        {
+        pkgs.runCommand "${old.name}-wrapped" {
           inherit (old) pname version meta;
 
           nativeBuildInputs = [pkgs.makeWrapper];
