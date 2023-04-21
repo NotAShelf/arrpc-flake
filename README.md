@@ -30,11 +30,20 @@ home.packages [
 ];
 ```
 
-3. Start arRPC with a systemd-service 
+3.a Start arRPC with a systemd service
+
+You can use a systemd service to start arRPC automatically
 
 ```nix
 let
   arRPC = inputs.arrpc.packages.${pkgs.system}.arrpc;
+  
+  # start arRPC after your window manager/wayland compositor
+  mkService = lib.recursiveUpdate {
+    Unit.PartOf = ["graphical-session.target"];
+    Unit.After = ["graphical-session.target"];
+    Install.WantedBy = ["graphical-session.target"];
+  };
 in {
   systemd.user.services = {
     arRPC = mkService {
@@ -47,4 +56,12 @@ in {
     };
   };
 }
+
+3.b Start arRPC from your window manager/compositor's auto-start line
+
+Alternatively, if you are not a big fan of systemd services, you can auto-start arRPC from your wm/compositor's autostart section
+
+```nix
+# For Hyprland - requires arRPC to be in your environment.packages or home.packages
+exec-once = arRPC
 ```
