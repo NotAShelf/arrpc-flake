@@ -7,7 +7,7 @@ A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project. The fl
 ## Usage
 
 
-1. Add this repository to your inputs
+### 1. Add this repository to your inputs
 
 ```nix
 # ...
@@ -20,7 +20,7 @@ inputs = {
 # ...
 ```
 
-2. Reference the exposed package from the input
+### 2. Reference the exposed package from the input
 
 ```nix
 # with home-manager
@@ -30,7 +30,7 @@ home.packages [
 ];
 ```
 
-3.a Start arRPC with a systemd service
+### 3.a Start arRPC with a systemd service
 
 You can use a systemd service to start arRPC automatically
 
@@ -56,8 +56,9 @@ in {
     };
   };
 }
+```
 
-3.b Start arRPC from your window manager/compositor's auto-start line
+### 3.b Start arRPC from your window manager/compositor's auto-start line
 
 Alternatively, if you are not a big fan of systemd services, you can auto-start arRPC from your wm/compositor's autostart section
 
