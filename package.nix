@@ -1,13 +1,13 @@
 {
   lib,
-  stdenv,
   fetchFromGitHub,
   buildNpmPackage,
   python3,
   nodejs,
   nixosTests,
+  extraFlags ? [],
 }:
-buildNpmPackage rec {
+buildNpmPackage {
   pname = "arRPC";
   version = "3.0.0";
 
@@ -36,7 +36,8 @@ buildNpmPackage rec {
     ${nodejs}/bin/node --version
     makeWrapper ${nodejs}/bin/node $out/bin/arRPC \
       --add-flags $out/lib/node_modules/arrpc/src \
-      --chdir $out/lib/node_modules/arrpc/src
+      --chdir $out/lib/node_modules/arrpc/src \
+      ${lib.concatStringsSep " " (map (flag: "--add-flags ${flag}") extraFlags)}
   '';
 
   passthru.tests.arrpc = nixosTests.arrpc;
