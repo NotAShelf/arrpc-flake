@@ -24,7 +24,7 @@ inputs = {
 
 ```nix
 # with home-manager
-home.packages [
+home.packages = [
   inputs.arrpc.packages.${pkgs.system}.arrpc # arrpc and default both refer to the same derivation
   # ...
 ];
