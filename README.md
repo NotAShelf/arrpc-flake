@@ -66,3 +66,13 @@ Alternatively, if you are not a big fan of systemd services, you can auto-start 
 # For Hyprland - requires arRPC to be in your environment.packages or home.packages
 exec-once = arRPC
 ```
+
+## Overriding
+
+You can pass custom flags to the arRPC binary by overriding the package with an `extraFlags` attribute that takes a list.
+
+```nix
+arrpc = inputs.arrpc.packages.${pkgs.system}.arrpc.override {
+  extraFlags = ["--debug"];
+};
+```
