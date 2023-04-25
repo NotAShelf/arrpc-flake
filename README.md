@@ -1,6 +1,7 @@
 # arrpc-flake
 
 A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project. The flake exposes the `arrpc` package that you can use.
+This flake is only responsible for providing arRPC to you. You will still need to set up arRPC [for your respective client](https://github.com/OpenAsar/arrpc#usage).
 
 
 
@@ -35,6 +36,7 @@ home.packages = [
 You can use a systemd service to start arRPC automatically
 
 ```nix
+{lib, ...}:
 let
   arRPC = inputs.arrpc.packages.${pkgs.system}.arrpc;
   
