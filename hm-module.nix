@@ -25,7 +25,7 @@ in {
         '';
         example = lib.literalExpression ''
           inputs.arrpc.packages.''${pkgs.system}.arrpc.override {
-            flags = [
+            extraFlags = [
               "--debug"
             ];
           }
