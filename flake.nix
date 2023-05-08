@@ -24,7 +24,7 @@
     });
 
     homeManagerModules = {
-      arrpc = import ./hm-module.nix;
+      arrpc = import ./hm-module.nix self;
       default = self.homeManagerModules.arrpc;
     };
 
