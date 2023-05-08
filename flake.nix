@@ -23,6 +23,8 @@
       default = arrpc;
     });
 
+    homeManagerModules = import ./hm-module.nix;
+
     formatter = withPkgsFor (_: pkgs: pkgs.alejandra);
   };
 }
