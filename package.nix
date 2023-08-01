@@ -4,18 +4,17 @@
   buildNpmPackage,
   python3,
   nodejs,
-  nixosTests,
   extraFlags ? [],
 }:
 buildNpmPackage {
   pname = "arRPC";
-  version = "3.0.0";
+  version = "3.1.0";
 
   src = fetchFromGitHub {
     owner = "OpenAsar";
     repo = "arRPC";
-    rev = "9689f1f21d23d1b0acc2b8572aee2044f650ebb5";
-    sha256 = "sha256-r+X2LOgjdMfbhTggI/8JACQSmhJP/asAdOD/kp/AV0I=";
+    rev = "bfcba7e3d6e6f7301a5699c4a1eb10c968e7b568";
+    hash = "sha256-P+tfoUlofQ05N1t9dtD12EgzKVs1t15wj/u5zzCxs7Q=";
   };
 
   dontNpmBuild = true;
@@ -39,8 +38,6 @@ buildNpmPackage {
       --chdir $out/lib/node_modules/arrpc/src \
       ${lib.concatStringsSep " " (map (flag: "--add-flags ${flag}") extraFlags)}
   '';
-
-  passthru.tests.arrpc = nixosTests.arrpc;
 
   meta = with lib; {
     mainProgram = "arRPC";
