@@ -6,7 +6,7 @@ self: {
 }: let
   inherit (lib) types mkIf mkOption mkEnableOption mdDoc literalExpression;
 
-  cfg = config.programs.arrpc;
+  cfg = config.services.arrpc;
 in {
   options.services.arrpc = {
     enable = mkEnableOption "arrpc";
