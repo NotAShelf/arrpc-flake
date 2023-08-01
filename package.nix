@@ -2,7 +2,6 @@
   lib,
   fetchFromGitHub,
   buildNpmPackage,
-  python3,
   nodejs,
   extraFlags ? [],
 }:
@@ -20,8 +19,6 @@ buildNpmPackage {
   dontNpmBuild = true;
 
   npmDepsHash = "sha256-ZgoxPBOxdi/Jd7ZQaow56gZchDHQpXuLJjbvcsy/pqA=";
-
-  nativeBuildInputs = [python3];
 
   preInstall = ''
     mkdir -p $out/lib/node_modules/arRPC/
@@ -43,7 +40,7 @@ buildNpmPackage {
     mainProgram = "arRPC";
     description = "An open implementation of Discord's local RPC servers";
     homepage = "https://github.com/OpenAsar/arRPC";
-    changelog = "https://github.com/OpenAsar/arRPC/blob/main/changelog.md";
+    changelog = "https://github.com/OpenAsar/arRPC/blob/${version}/changelog.md";
     license = licenses.mit;
     maintainers = with maintainers; [notashelf];
   };

@@ -19,6 +19,8 @@ inputs = {
 
 ### 2. Reference the exposed package from the input
 
+> Optional if you intend to use the home-manager module
+
 ```nix
 # with home-manager
 home.packages = [
@@ -56,23 +58,23 @@ with lib; {
 
 ```
 
-### 3.b Start arRPC with a systemd service
+### 3.b Start arRPC manually with a systemd service
 
-You can use a systemd service to start arRPC automatically
+If you prefer a more hands-on approach, you can use a systemd service to start arRPC automatically.
+
+This is essentially what is done by the home-manager module behinds the scenes.
 
 ```nix
+{lib, ...}:
 let
   arRPC = inputs.arrpc.packages.${pkgs.system}.arrpc;
-
-  # start arRPC after your window manager/wayland compositor
-  mkService = lib.recursiveUpdate {
-    Unit.PartOf = ["graphical-session.target"];
-    Unit.After = ["graphical-session.target"];
-    Install.WantedBy = ["graphical-session.target"];
-  };
 in {
   systemd.user.services = {
     arRPC = mkService {
+      Unit.PartOf = ["graphical-session.target"];
+      Unit.After = ["graphical-session.target"];
+      Install.WantedBy = ["graphical-session.target"];
+
       Unit.Description = "Discord Rich Presence for browsers, and some custom clients";
         Service = {
             ExecStart = "${lib.getExe arRPC}";
