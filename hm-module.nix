@@ -8,24 +8,22 @@ self: {
 
   cfg = config.programs.arrpc;
 in {
-  options = {
-    services.arrpc = {
-      enable = mkEnableOption "arrpc";
+  options.services.arrpc = {
+    enable = mkEnableOption "arrpc";
 
-      package = mkOption {
-        type = types.package;
-        default = self.packages.${pkgs.system}.default;
-        description = mdDoc ''
-          Package to use for arRPC configuration.
-        '';
-        example = literalExpression ''
-          inputs.arrpc.packages.''${pkgs.system}.arrpc.override {
-            flags = [
-              "--debug"
-            ];
-          }
-        '';
-      };
+    package = mkOption {
+      type = types.package;
+      default = self.packages.${pkgs.system}.default;
+      description = mdDoc ''
+        Package to use for arRPC configuration.
+      '';
+      example = literalExpression ''
+        inputs.arrpc.packages.''${pkgs.system}.arrpc.override {
+          flags = [
+            "--debug"
+          ];
+        }
+      '';
     };
   };
 

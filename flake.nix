@@ -19,7 +19,7 @@
     withPkgsFor = fn: nixpkgs.lib.genAttrs supportedSystems (system: fn system nixpkgs.legacyPackages.${system});
   in {
     homeManagerModules = rec {
-      arrpc = import ./hm-module.nix;
+      arrpc = import ./hm-module.nix self;
       default = arrpc;
     };
 
