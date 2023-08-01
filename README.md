@@ -2,10 +2,7 @@
 
 A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project. The flake exposes the `arrpc` package that you can use.
 
-
-
 ## Usage
-
 
 ### 1. Add this repository to your inputs
 
@@ -30,14 +27,43 @@ home.packages = [
 ];
 ```
 
-### 3.a Start arRPC with a systemd service
+### 3.a Use the home-manager module
+
+We provide a home-manager module that does the heavy lifting for you.
+
+```nix
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+with lib; {
+  imports = [
+    inputs.arrpc.homeManagerModules.default
+  ];
+
+  config =  {
+    home.packages = [
+      pkgs.webcord-vencord # webcord with vencord extension installed
+    ];
+
+    # enable arRPC service, adds arRPC to home-packages and starts the systemd service for you
+    services.arrpc.enable = true;
+  };
+}
+
+
+```
+
+### 3.b Start arRPC with a systemd service
 
 You can use a systemd service to start arRPC automatically
 
 ```nix
 let
   arRPC = inputs.arrpc.packages.${pkgs.system}.arrpc;
-  
+
   # start arRPC after your window manager/wayland compositor
   mkService = lib.recursiveUpdate {
     Unit.PartOf = ["graphical-session.target"];
@@ -58,11 +84,11 @@ in {
 }
 ```
 
-### 3.b Start arRPC from your window manager/compositor's auto-start line
+### 3.c Start arRPC from your window manager/compositor's auto-start line
 
 Alternatively, if you are not a big fan of systemd services, you can auto-start arRPC from your wm/compositor's autostart section
 
 ```nix
-# For Hyprland - requires arRPC to be in your environment.packages or home.packages
+# For Hyprland - requires arRPC to be in your environment.systemPackages or home.packages
 exec-once = arRPC
 ```
