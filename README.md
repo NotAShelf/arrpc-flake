@@ -1,6 +1,8 @@
-# arrpc-flake
+# 🦆 arrpc-flake
 
-A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project. The flake exposes the `arrpc` package that you can use.
+> A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project.
+
+This flake exposes the `arrpc` package and a home-manager module with a systemd service for your convenience.
 
 ## Usage
 
@@ -19,7 +21,9 @@ inputs = {
 
 ### 2. Reference the exposed package from the input
 
-> Optional if you intend to use the home-manager module
+> This set is optional if you intend to use the home-manager module.
+
+Add the arRPC package to your packages to make it available in PATH.
 
 ```nix
 # with home-manager

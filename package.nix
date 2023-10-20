@@ -7,18 +7,18 @@
 }:
 buildNpmPackage {
   pname = "arRPC";
-  version = "3.1.0";
+  version = "2023-19-17-unstable";
 
   src = fetchFromGitHub {
     owner = "OpenAsar";
     repo = "arRPC";
-    rev = "bfcba7e3d6e6f7301a5699c4a1eb10c968e7b568";
-    hash = "sha256-P+tfoUlofQ05N1t9dtD12EgzKVs1t15wj/u5zzCxs7Q=";
+    rev = "89f4da610ccfac93f461826a446a17cd3b23953d";
+    hash = "sha256-M4oQBpY/t+MEyvCienQE/GU2JfFzPKI9U2jQTRZQs4I=";
   };
 
   dontNpmBuild = true;
 
-  npmDepsHash = "sha256-ZgoxPBOxdi/Jd7ZQaow56gZchDHQpXuLJjbvcsy/pqA=";
+  npmDepsHash = "sha256-vxx0w6UjwxIK4cgpivtjNbIgkb4wKG4ijSHdP/FeQZ4=";
 
   preInstall = ''
     mkdir -p $out/lib/node_modules/arRPC/
@@ -38,7 +38,7 @@ buildNpmPackage {
 
   meta = with lib; {
     mainProgram = "arRPC";
-    description = "An open implementation of Discord's local RPC servers";
+    description = "Open Discord RPC server for atypical setups ";
     homepage = "https://github.com/OpenAsar/arRPC";
     changelog = "https://github.com/OpenAsar/arRPC/blob/${version}/changelog.md";
     license = licenses.mit;
