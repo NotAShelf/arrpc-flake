@@ -6,7 +6,7 @@
   extraFlags ? [],
 }: let
   pname = "arRPC";
-  version = "2023-11-01-unstable";
+  version = "2023-12-14-unstable";
 in
   buildNpmPackage {
     inherit pname version;
@@ -14,8 +14,8 @@ in
     src = fetchFromGitHub {
       owner = "OpenAsar";
       repo = "arRPC";
-      rev = "c902d82addb4a84ede7e8dd4ccfe796570c05254";
-      hash = "sha256-wuhFD8rQEyFz/u/Y4p5QHEsDB8b0UHOTl+QWKF4+wAQ=";
+      rev = "98879cae0565e6fce34e4cb6f544bf42c6a7e7c8";
+      hash = "sha256-Q46nuAFj/G5JyXAwSlV+Eh3CLO8/UYwrBX19sDUKgUg=";
     };
 
     dontNpmBuild = true;
