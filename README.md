@@ -1,8 +1,12 @@
 # 🦆 arrpc-flake
 
-> A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project.
+A nixos-flake for the [arRPC](https://github.com/OpenAsar/arrpc) project.
 
 This flake exposes the `arrpc` package and a home-manager module with a systemd service for your convenience.
+
+> [!NOTE]
+> arRPC has been in nixpkgs as a package, and home-manager as a module for a while now. As such, this repository
+> has been archived. You may remove this flake input entirely, and use arRPC that is in nixpkgs.
 
 ## Usage
 
